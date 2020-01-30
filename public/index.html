@@ -7,6 +7,7 @@
     <title>Weather App</title>
     <link href="styles/styles.css" rel="stylesheet">
 
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/skycons/1396634940/skycons.min.js" integrity="sha256-tZNzlXmrMrO9BLT6Gv4Y0LfAN8HdbZ7+LIuNf6WkFC0=" crossorigin="anonymous"></script>
     <script defer src="scripts/app.js"></script>
 
 </head>
@@ -20,18 +21,18 @@
     <div class="content">
         <div class = "general-information">
 
-         <div class = "status">Enter a location</div> 
-         <div class = "location">Find that location!</div>   
+         <div class = "status" data-status>Enter a location</div> 
+         <div class = "location" data-location>Find that location!</div>   
   
         </div>
         <div class ="details section">
             <div class = "detail">
                 <div class = "title">Wind</div>
-                <div class = "value">TBD</div>
+                <div class = "value" data-wind>TBD</div>
             </div>
             <div class = "detail">
                 <div class = "title">Temperature</div>
-                <div class = "value">TBD</div>
+                <div class = "value" data-temperature>TBD</div>
             </div>
         </div>
     </div>
