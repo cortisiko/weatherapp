@@ -27,7 +27,10 @@ const openMap = `http://api.openweathermap.org/data/2.5/weather?lat=${request.bo
    axios({
        url:url,
        responseType: 'json'
-   }).then(data => response.json(data.data))
+   }).then(data =>{ 
+       response.json(data.data.currently)
+
+})
    
  })
 

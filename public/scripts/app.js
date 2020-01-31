@@ -5,8 +5,10 @@ const locationElement = document.querySelector('[data-location]')
 const locationStatus = document.querySelector('[data-status]')
 const locationTemperature = document.querySelector('[data-temperature]')
 const locationWindSpeed = document.querySelector('[data-wind]')
+const locationPrecipitation = document.querySelector('[data-precipitation]')
+
 const icon = new Skycons({color:'#221'})
-icon.set('icon','cloudy')
+icon.set('icon','clear-day')
 icon.play()
 
 searchBox.addListener("places_changed",()=>{
@@ -39,11 +41,15 @@ fetch('/weather',{
 })
 
 function setWeatherData(data,place){
+    let temperature = (data.temperature).toFixed(0)
+
     locationElement.textContent = place
     locationStatus.textContent = data.summary
-    locationTemperature.textContent = data.temperature
-    locationWindSpeed.textContent = data.windSpeed
+    locationTemperature.textContent = `${temperature}º F`
+    locationWindSpeed.textContent = `${data.windSpeed} MPH`
+    locationPrecipitation.textContent = `${data.precipProbability}%`
 
     icon.set('icon',data.icon)
     icon.play()
+
 }
