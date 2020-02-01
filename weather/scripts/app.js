@@ -20,7 +20,6 @@ if (place ==null) return
 const lattitude = place.geometry.location.lat()
 const longitude = place.geometry.location.lng()
 
-
 fetch('/weather',{
     method: `POST`,
     headers:{
@@ -32,24 +31,31 @@ fetch('/weather',{
         longitude:longitude
     })
 }).then((response)=>response.json()).then(data=>{
-   console.log(data)
+    console.log(data)
    setWeatherData(data,place.formatted_address)
 }).catch(error=>{
     console.log(error)
 })
+searchElement.value ='';
 
 })
 
 function setWeatherData(data,place){
-    let temperature = (data.temperature).toFixed(0)
+    let temperature = removeFloatingPoint(data.temperature)
+    let windSpeed = removeFloatingPoint(data.windSpeed)
 
     locationElement.textContent = place
     locationStatus.textContent = data.summary
     locationTemperature.textContent = `${temperature}º F`
-    locationWindSpeed.textContent = `${data.windSpeed} MPH`
+    locationWindSpeed.textContent = `${windSpeed} MPH`
     locationPrecipitation.textContent = `${data.precipProbability}%`
 
     icon.set('icon',data.icon)
     icon.play()
 
+}
+
+function removeFloatingPoint(data){
+    let number = data.toFixed(0)
+    return number;
 }
